@@ -17,3 +17,5 @@ docker-compose run --rm app sh -c "django-admin startproject app ."
 ### run our services
 
 docker-compose up
+
+###
