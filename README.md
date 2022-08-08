@@ -2,6 +2,14 @@
 
 docker-compose build
 
+### run our services
+
+docker-compose up
+
+### stop all containers services
+
+docker-compose down
+
 ## To run the app services via docker compose and also pass flake8
 
 ### --rm means remove the container once it is stopped
@@ -12,13 +20,13 @@ docker-compose build
 
 docker-compose run --rm app sh -c "flake8"
 
-### create the Django via docker compose
+### create the Django app via docker compose to reside in the current directory
 
 docker-compose run --rm app sh -c "django-admin startproject app ."
 
-### run our services
+### create another Django app called core via docker compose to reside in app directory
 
-docker-compose up
+docker-compose run --rm app sh -c "python manage.py startapp core"
 
 # Design Driven Test (DDT)
 
