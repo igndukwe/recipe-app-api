@@ -1,3 +1,9 @@
+##################
+
+# Docker Compose
+
+##################
+
 ## Build the Dockerfile via docker-compose
 
 docker-compose build
@@ -28,7 +34,11 @@ docker-compose run --rm app sh -c "django-admin startproject app ."
 
 docker-compose run --rm app sh -c "python manage.py startapp core"
 
+############################
+
 # Design Driven Test (DDT)
+
+############################
 
 ## 1. Write the test for the behaviour you expect to see in code
 
@@ -36,4 +46,30 @@ docker-compose run --rm app sh -c "python manage.py startapp core"
 
 ## 3. Write code so that test passes
 
+#####################################
+
+# Docker Compose with python commands
+
+#####################################
 docker-compose run --rm app sh -c "python manage.py test"
+
+## making a new migration for the database
+
+docker-compose run --rm app sh -c "python manage.py makemigrations"
+
+## migrate you new database
+
+docker-compose run --rm app sh -c "python manage.py wait_for_db && python manage.py migrate"
+
+## if migrate does not work properly, we need to delete our previous db
+
+docker-compose down
+docker volume rm recipe-app-api_dev-db-data
+docker volume ls
+
+## create super user
+
+docker-compose run --rm app sh -c "python manage.py createsuperuser"
+
+Email: admin@example.com
+Password: @abcd1234
